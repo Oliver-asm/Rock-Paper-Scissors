@@ -13,7 +13,6 @@ tres rondas es el campo.*/
 function getcomputerChoice(){
     let randomNumber = Math.floor(Math.random() * 3) + 1;
 
-    console.log(randomNumber)
     if (randomNumber===1) return "paper";
     else if(randomNumber===2) return "rock";
     return "scissors";
