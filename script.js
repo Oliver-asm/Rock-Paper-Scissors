@@ -63,7 +63,7 @@ else if(returned==false) ++computerScore;
 }
 if(humanScore<computerScore) console.log("The computer is the winner");
 else if(computerScore<humanScore) console.log("You are the winner");
-else console.log("Empate, none is the winner");
+else console.log("It's a tie");
 
 confirm("Would you like play again?")? playGame():console.log("Game Over");
 
