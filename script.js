@@ -34,12 +34,12 @@ function playRound(humanChoice, computerChoice) {
     if((humanChoice==="scissors" && computerChoice==="paper")||
     (humanChoice==="paper" && computerChoice==="rock")||
     (humanChoice==="rock" && computerChoice==="scissors")){
-        console.log(`You won,${humanChoice} beats ${computerChoice}}`);
+        console.log(`You won,${humanChoice} beats ${computerChoice}`);
        return true;
     }else if (humanChoice===computerChoice){
-        console.log("Empate");
+        console.log("Tie");
     } else {
-        console.log(`You lost,${computerChoice} beats ${humanChoice}}`);
+        console.log(`You lost,${computerChoice} beats ${humanChoice}`);
         return false;
     }
 }
