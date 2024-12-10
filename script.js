@@ -29,44 +29,72 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-    
+    if(humanChoice!== undefined){
+    const result = document.querySelector("#boxResults");
+    const para = document.createElement("p");
+    let choise;
     humanChoice = humanChoice.toLowerCase();
     if((humanChoice==="scissors" && computerChoice==="paper")||
     (humanChoice==="paper" && computerChoice==="rock")||
     (humanChoice==="rock" && computerChoice==="scissors")){
-        console.log(`You won,${humanChoice} beats ${computerChoice}`);
-       return true;
+        para.textContent = `You won,${humanChoice} beats ${computerChoice}`;
+        choise = true;
     }else if (humanChoice===computerChoice){
-        console.log("Tie");
+        para.textContent = "Tie";
     } else {
-        console.log(`You lost,${computerChoice} beats ${humanChoice}`);
-        return false;
+        para.textContent = `You lost,${computerChoice} beats ${humanChoice}`;
+        choise = false;
+    }
+
+    result.appendChild(para);
+    return choise;
+    
+}
+}
+
+let machinWin = 0;
+let humanWin = 0;
+
+const buttonContainer = document.querySelector(".buttons");
+buttonContainer.addEventListener("click",(event)=> {
+    let humanChoice = event.target.value;
+    let computerChoice = getcomputerChoice();
+    let finalResult = playRound(humanChoice, computerChoice);
+
+    if(finalResult=== true) humanWin++;
+    if(finalResult===false) machinWin++;
+
+    winner(machinWin,humanWin);
+    
+});
+
+function winner(machinPoint,humanPoint) {
+    if(humanPoint === 5) {
+        const para = document.createElement("p");
+        const result = document.querySelector("#boxResults");
+        para.textContent = "You are the final winner!";
+        para.style.backgroundColor="green";
+        para.style.color="white";
+        para.style.fontSize = "20px";
+        result.appendChild(para);
+        machinWin= 0;
+        humanWin = 0;
+        
+    } else if (machinPoint ===5){
+        const para = document.createElement("p");
+        const result = document.querySelector("#boxResults");
+        para.textContent = "Machin is the final winner!";
+        para.style.backgroundColor="red";
+        para.style.color="white";
+        para.style.fontSize = "20px";
+        result.appendChild(para);
+        machinWin= 0;
+        humanWin = 0;
     }
 }
 
-function playGame(){
 
-let humanScore = 0;
-let computerScore = 0;
 
-for(let i=1;i < 6;i++){
 
-const humanSelection = getHumanChoice();
-const computerSelection = getcomputerChoice();
 
-let returned =playRound(humanSelection,computerSelection);
-
-if(returned) ++humanScore;
-else if(returned==false) ++computerScore;
-
-}
-if(humanScore<computerScore) console.log("The computer is the winner");
-else if(computerScore<humanScore) console.log("You are the winner");
-else console.log("It's a tie");
-
-confirm("Would you like play again?")? playGame():console.log("Game Over");
-
-}
-
-playGame();
 
